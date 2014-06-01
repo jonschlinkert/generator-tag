@@ -162,6 +162,12 @@ VerbTagsGenerator.prototype.readme = function readme() {
   }
 };
 
+VerbTagsGenerator.prototype.index = function index() {
+  if (!fs.existsSync('index.js')) {
+    this.template('index.js', 'index.js');
+  }
+};
+
 VerbTagsGenerator.prototype.jshintrc = function jshintrc() {
   if (!fs.existsSync('.jshintrc')) {
     this.copy('jshintrc', '.jshintrc');
