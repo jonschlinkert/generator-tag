@@ -33,6 +33,7 @@
     "mocha": "~1.18.2"
   },
   "keywords": [
+    "<%= _.appname(projectname, ['verb', 'tag']) %>",
     "verbtag",
     "verb tag"
   ]
