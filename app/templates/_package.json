@@ -1,23 +1,23 @@
 {
-  "name": "verb-tag-<%= _.slugify(projectname) %>",
+  "name": "<%= _.slugify(projectname) %>",
   "description": "<%= projectdesc %>",
   "version": "0.1.0",
-  "homepage": "https://github.com/<%= username %>/verb-tag-<%= _.slugify(projectname) %>",
+  "homepage": "https://github.com/<%= username %>/<%= _.slugify(projectname) %>",
   "author": {
     "name": "<%= authorname %>",
     "url": "<%= authorurl %>"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/<%= username %>/verb-tag-<%= _.slugify(projectname) %>.git"
+    "url": "git://github.com/<%= username %>/<%= _.slugify(projectname) %>.git"
   },
   "bugs": {
-    "url": "https://github.com/<%= username %>/verb-tag-<%= _.slugify(projectname) %>/issues"
+    "url": "https://github.com/<%= username %>/<%= _.slugify(projectname) %>/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/<%= username %>/verb-tag-<%= _.slugify(projectname) %>/blob/master/LICENSE-MIT"
+      "url": "https://github.com/<%= username %>/<%= _.slugify(projectname) %>/blob/master/LICENSE-MIT"
     }
   ],
   "main": "index.js",

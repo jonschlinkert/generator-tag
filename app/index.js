@@ -31,7 +31,7 @@ var verbTagsConfig = new Configstore('generator-verb-tags');
 var userPkg = {};
 
 var VerbTagsGenerator = module.exports = function VerbTagsGenerator(args, options, config) {
-  yeoman.generators.VerbTags.apply(this, arguments);
+  yeoman.generators.Base.apply(this, arguments);
   var self = this;
 
   // Mix methods from change-case into yeoman's Lo-Dash
@@ -57,7 +57,7 @@ var VerbTagsGenerator = module.exports = function VerbTagsGenerator(args, option
     userPkg = normalize.all(this.readJSON('package.json'));
   }
 };
-util.inherits(VerbTagsGenerator, yeoman.generators.VerbTags);
+util.inherits(VerbTagsGenerator, yeoman.generators.Base);
 
 
 VerbTagsGenerator.prototype.askFor = function askFor() {
@@ -154,7 +154,7 @@ VerbTagsGenerator.prototype.app = function app() {
 
 VerbTagsGenerator.prototype.readme = function readme() {
   if (!fs.existsSync('docs/README.tmpl.md') && !fs.existsSync('.verbrc.md')) {
-    this.copy('README', '.verbrc.md');
+    this.copy('verbrc.md', '.verbrc.md');
   }
 };
 
