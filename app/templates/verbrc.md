@@ -7,7 +7,7 @@
 
 ## Usage
 
-To register the tag with [verb][verb], add the `tags` property to the front matter of your project's `.verbrc.md` (or `docs/README.tmpl.md`):
+If you're using [verb-cli][verb-cli], you will need to define `['{%= name %}']` in the `tags` property in the front matter of your project's `.verbrc.md` (or `docs/README.tmpl.md`). This registers the tag with [verb][verb]:
 
 ```yaml
 ---
@@ -33,3 +33,7 @@ Front-matter is just one way to register verb tags, filters, and plugins. See th
 ***
 
 {%= include("footer") %}
+
+[verb]: https://github.com/assemble/verb
+[docs]: https://github.com/assemble/verb/blob/master/DOCS.md#tags
+[verb-cli]: https://github.com/assemble/verb-cli

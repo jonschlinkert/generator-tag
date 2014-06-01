@@ -6,13 +6,18 @@
  */
 'use strict';
 
-var <%= _.namify(appname) %> = require('<%= appname %>');
+var <%= _.appname(appname) %> = require('<%= appname %>');
 
 module.exports = function (verb) {
   var tags = {};
 
-  tags.<%= _.namify(appname) %> = function (content) {
-    return <%= _.namify(appname) %>(content);
+  tags.<%= _.appname(appname) %> = function (content) {
+    return <%= _.appname(appname) %>(content);
+  };
+
+  // Example tag
+  tags.example = function (content) {
+    return content.toUpperCase();
   };
   return tags;
 };

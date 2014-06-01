@@ -168,6 +168,15 @@ VerbTagsGenerator.prototype.index = function index() {
   }
 };
 
+VerbTagsGenerator.prototype.test = function test() {
+  if (!fs.existsSync('test/test.js')) {
+    this.copy('test/mocha.opts', 'test/mocha.opts');
+    this.template('test/name.js', 'test/' + this.appname + '.js');
+    this.template('test/name.md', 'test/' + this.appname + '.md');
+    this.template('test/test.js', 'test/test.js');
+  }
+};
+
 VerbTagsGenerator.prototype.jshintrc = function jshintrc() {
   if (!fs.existsSync('.jshintrc')) {
     this.copy('jshintrc', '.jshintrc');
