@@ -1,5 +1,5 @@
 /*!
- * generator-verb-tags https://github.com/jonschlinkert/generator-verb-tags
+ * generator-tag https://github.com/jonschlinkert/generator-tag
  * Copyright (c) 2014 Jon Schlinkert, contributors.
  * Licensed under the MIT License
  */
@@ -27,9 +27,9 @@ function introductionMessage() {
   console.log();
 }
 
-log.runner = 'generator-verb-tags';
+log.runner = 'generator-tag';
 
-var verbTagsConfig = new Configstore('generator-verb-tags');
+var verbTagsConfig = new Configstore('generator-tag');
 var userPkg = {};
 
 var VerbTagsGenerator = module.exports = function VerbTagsGenerator(args, options, config) {
@@ -79,14 +79,14 @@ VerbTagsGenerator.prototype.askFor = function askFor() {
 
   prompts.push({
     name: 'projectname',
-    message: 'What is the name of the project?',
+    message: 'What is the name of the tag?',
     default: userPkg.name ? userPkg.name : this.appname
   });
 
   prompts.push({
     name: 'projectdesc',
     message: 'Want to add a description?',
-    default: userPkg.description || 'The most interesting project in the world > VerbTags'
+    default: userPkg.description || 'Custom tag, for Verb.'
   });
 
   prompts.push({
@@ -157,44 +157,38 @@ VerbTagsGenerator.prototype.app = function app() {
 
 
 VerbTagsGenerator.prototype.readme = function readme() {
-  if (!fs.existsSync('docs/README.tmpl.md') && !fs.existsSync('.verbrc.md')) {
-    this.copy('verbrc.md', '.verbrc.md');
+  this.copy('verbrc.md', '.verbrc.md');
+};
+
+VerbTagsGenerator.prototype.tag = function tag() {
+  if (!fs.existsSync('lib/' + this.appname + '.js')) {
+    this.template('tag.js', 'lib/' + this.appname + '.js');
   }
 };
 
 VerbTagsGenerator.prototype.index = function index() {
-  if (!fs.existsSync('index.js')) {
-    this.template('index.js', 'index.js');
-  }
+  this.template('index.js', 'index.js');
 };
 
-VerbTagsGenerator.prototype.test = function test() {
-  if (!fs.existsSync('test/test.js')) {
-    this.copy('test/mocha.opts', 'test/mocha.opts');
-    this.template('test/name.js', 'test/' + this.appname + '.js');
-    this.template('test/name.md', 'test/' + this.appname + '.md');
-    this.template('test/test.js', 'test/test.js');
+VerbTagsGenerator.prototype.testFiles = function testFiles() {
+  if(this.name === 'mocha') {
+    this.copy('mocha.opts', 'test/mocha.opts');
+    this.template('name.js', 'test/<%= _.appname(appname) %>.js');
+    this.template('example.md', 'test/example.md');
+    this.template('example.js', 'test/example.js');
+    this.template('test.js', 'test/test.js');
   }
 };
 
 VerbTagsGenerator.prototype.jshintrc = function jshintrc() {
-  if (!fs.existsSync('.jshintrc')) {
-    this.copy('jshintrc', '.jshintrc');
-  }
+  this.copy('jshintrc', '.jshintrc');
 };
 
 VerbTagsGenerator.prototype.git = function git() {
-  if (!fs.existsSync('.gitignore')) {
-    this.copy('gitignore', '.gitignore');
-  }
-
-  if (!fs.existsSync('.gitattributes')) {
-    this.copy('gitattributes', '.gitattributes');
-  }
+  this.copy('gitignore', '.gitignore');
+  this.copy('gitattributes', '.gitattributes');
 };
 
 VerbTagsGenerator.prototype.license = function license() {
-  if (!fs.existsSync('LICENSE-MIT')) {
-    this.template('LICENSE-MIT');
-  }
+  this.template('LICENSE-MIT');
 };
