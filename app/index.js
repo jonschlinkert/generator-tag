@@ -170,16 +170,6 @@ VerbTagsGenerator.prototype.index = function index() {
   this.template('index.js', 'index.js');
 };
 
-VerbTagsGenerator.prototype.testFiles = function testFiles() {
-  if(this.name === 'mocha') {
-    this.copy('mocha.opts', 'test/mocha.opts');
-    this.template('name.js', 'test/<%= _.appname(appname) %>.js');
-    this.template('example.md', 'test/example.md');
-    this.template('example.js', 'test/example.js');
-    this.template('test.js', 'test/test.js');
-  }
-};
-
 VerbTagsGenerator.prototype.jshintrc = function jshintrc() {
   this.copy('jshintrc', '.jshintrc');
 };
